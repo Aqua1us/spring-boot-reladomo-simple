@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MithraRuntime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="mithraruntime.xsd">
+    <ConnectionManager className="com.amtkxa.springbootreladomosimple.infrastructure.database.DBConnectionManager">
+        <Property name="jdbcDriverClassName" value="org.postgresql.Driver"/>
+        <Property name="jdbcSubProtocol" value="postgresql"/>
+        <Property name="host" value="localhost"/>
+        <Property name="port" value="5432"/>
+        <Property name="database" value="testdb"/>
+        <Property name="username" value="testuser"/>
+        <Property name="password" value="testuser"/>
+        <Property name="timeZone" value="Asia/Tokyo"/>
+        <!--
+        <Property name="initialSize" value="1"/>
+        <Property name="poolSize" value="0"/>
+        -->
+
+        <MithraObjectConfiguration className="com.amtkxa.springbootreladomosimple.domain.entity.ObjectSequence" cacheType="partial"/>
+        <MithraObjectConfiguration className="com.amtkxa.springbootreladomosimple.domain.entity.Customer" cacheType="partial"/>
+        <MithraObjectConfiguration className="com.amtkxa.springbootreladomosimple.domain.entity.Account" cacheType="partial"/>
+        <MithraObjectConfiguration className="com.amtkxa.springbootreladomosimple.domain.entity.Transaction" cacheType="partial"/>
+    </ConnectionManager>
+</MithraRuntime>
