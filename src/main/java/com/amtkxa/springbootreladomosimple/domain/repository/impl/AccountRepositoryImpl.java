@@ -32,14 +32,14 @@ public class AccountRepositoryImpl implements AccountRepository {
   @Override
   public AccountList deposit(TransactionView transactionView) {
     Account account = AccountFinder.findOne(AccountFinder.accountId().eq(transactionView.getAccountId()));
-    account.setBalance(transactionView.getAmount());
+    account.setBalance(account.getBalance() + transactionView.getAmount());
     return new AccountList(account);
   }
 
   @Override
   public AccountList withdrawal(TransactionView transactionView) {
     Account account = AccountFinder.findOne(AccountFinder.accountId().eq(transactionView.getAccountId()));
-    account.setBalance(transactionView.getAmount() * -1);
+    account.setBalance(account.getBalance() + transactionView.getAmount() * -1);
     return new AccountList(account);
   }
 
