@@ -43,7 +43,10 @@ public class CustomerUseCaseImpl implements CustomerUseCase {
    */
   @Override
   public List<? extends CustomerView> create(CustomerView customerView) {
-    CustomerList customerList = customerRepositoryImpl.create(customerView);
+    CustomerList customerList = MithraManagerProvider.getMithraManager().executeTransactionalCommand((tx) -> {
+      CustomerList txCustomerList = customerRepositoryImpl.create(customerView);
+      return txCustomerList;
+    });
     return customerPresenter.response(customerList);
   }
 

@@ -37,7 +37,10 @@ public class AccountUseCaseImpl implements AccountUseCase {
    */
   @Override
   public List<? extends AccountView> create(AccountView accountView) {
-    AccountList accountList = accountRepositoryImpl.create(accountView);
+    AccountList accountList = MithraManagerProvider.getMithraManager().executeTransactionalCommand((tx) -> {
+      AccountList txAccountList = accountRepositoryImpl.create(accountView);
+      return txAccountList;
+    });
     return accountPresenter.response(accountList);
   }
 
